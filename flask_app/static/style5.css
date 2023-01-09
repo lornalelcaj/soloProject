@@ -1,0 +1,45 @@
+
+  /* Style the links inside the navigation bar */
+  .container a {
+    float: left;
+    display: block;
+    color: turquoise;
+    
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  /* Change the color of links on hover */
+  .container a:hover {
+    color:turquoise;
+  }
+  
+  /* Style the "active" element to highlight the current page */
+  .container a.active {
+    background-color: turquoise;
+    color: white;
+  }
+  h5{
+    color: turquoise;
+  }
+.container1{
+    position: absolute;
+    left: 30%;
+    top: 30%;
+    height: 100px;
+    /* margin-top: -100px ;half of you height */
+    width: 400px;
+    /* margin-left: -200px; half of you width */
+}
+#upload1{
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+
+    /* OR
+    float: right;
+    */
+}
+

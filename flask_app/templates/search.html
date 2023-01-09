@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/7398/7398946.png" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Search</title>
+    <link rel="stylesheet" href="../static/style4.css">
+
+</head>
+<body class="container">
+    <nav>
+        <a href="/" class="page-navigation-link">Home</a>
+        <a class="page-navigation-link" href="/create">New</a>
+        <span class="current-page">Search</span>
+        <a class="page-navigation-link" href="/profile">Account</a>
+    </nav>
+    <h1 class="mb-4">Search for an Event</h1>
+    
+        <input type="text" id="searchBox_1" name="name" placeholder=" Search">
+        
+    <table id="table1" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Location Name</th>
+                <th>Attendees</th>
+                <th > Creator </th>
+                <th>Time</th> 
+                <th>Action</th> 
+                
+            </tr>
+        </thead>
+        {% for event in showEvent %}
+        {%if event.date >= today %}
+        <tbody>
+            <tr>
+                <td>
+                    <a href="/event/{{event.id}}">{{event.name}}</a>
+                    
+                </td>
+               
+                <td>{{event.location}}</td>
+                <td>{{event.attendanceNr}}</td>
+                <td> <a href="/user/{{event.creator_id}}">{{event.firstName}} {{event.lastName}} </a></td>
+                <td>{{event.date}}{{event.time}}</td>
+                
+                <td>
+                     {% if event.attendanceNr < event.playerNr %}
+                    {% if event.id not in userJoindEvents %}
+                    <a href="/attend/{{event.id}}">Join </a> {%endif%} {%endif%}
+                    {% if event.id in userJoindEvents %}
+                    <a href="/unattend/{{event.id}}">removeJoin</a>
+                    {%endif%} 
+                    {% if event.attendanceNr == event.playerNr %}
+                   <span>(Full) </span> {%endif%} 
+                     
+                </td> 
+                
+            </tr>
+            {%endif%}    
+            {%endfor%}
+        </tbody>
+    </table>
+    
+
+    <script>
+        searchBox_1.addEventListener("keyup",function(){
+    var keyword = this.value;
+    keyword = keyword.toUpperCase();
+    var table_1 = document.getElementById("table1");
+    var all_tr = table_1.getElementsByTagName("tr");
+    for(var i=0; i<all_tr.length; i++){
+            var all_columns = all_tr[i].getElementsByTagName("td");
+            for(j=0;j<all_columns.length; j++){
+                if(all_columns[j]){
+                    var column_value = all_columns[j].textContent || all_columns[j].innerText;
+                    column_value = column_value.toUpperCase();
+                    if(column_value.indexOf(keyword) > -1){
+                        all_tr[i].style.display = ""; // show
+                        break;
+                    }else{
+                        all_tr[i].style.display = "none"; // hide
+                    }
+                }
+            }
+        }
+})
+    </script>
+</body>
+</html>

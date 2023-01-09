@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/7398/7398946.png" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../static/style1.css">
+
+</head>
+<body>
+
+    <h1>iSport</h1>
+    <h3>Free Pickup Game Finder and Organizer</h3>
+        <form action="/login" method="post">
+            <div class="input-container">
+                <i class="fa fa-envelope"></i>
+                <label for="email"></label>
+                <input type="email" name="email" placeholder="Enter the user email">
+            </div>
+            <div>
+                {% with messages = get_flashed_messages(category_filter=["emailLogin"]) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-danger">{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+           
+            <div class="input-container">
+                <i class="fa fa-lock"></i>
+                <label for="password"></label>
+                <input  type="password" name="password" placeholder="Enter the password">
+            </div> 
+            <div class="form-row">
+                {% with messages = get_flashed_messages(category_filter=["passwordLogin"]) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-danger">{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <button class="btn btn-success" type="submit">Login</button>
+            <span>Don't have an account? <a href="/signup">Sign Up</a></span>
+        </form>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="shortcut icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/7398/7398946.png" />
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<title>{Person}'s Account</title>
+<link rel="stylesheet" href="../static/style6.css">
+</head>
+
+<body>
+    <nav class="container">
+        <a href="/" class="page-navigation-link">Home</a>
+        <a class="page-navigation-link" href="/create">New</a>
+        <a href="/search" class="page-navigation-link">Search</a>
+        <a href="/profile" class="page-navigation-link">Account</a>
+        <a class="page-navigation-link" href="/logout">Logout</a>
+    </nav>
+    <div style="position: absolute;top: 0;z-index: -1;height: 400px; width: 100vw; opacity: 0.5;background: linear-gradient(25deg, rgba(64,224,208,0.8491771708683473) 0%, rgba(255,255,255,1) 95%);"></div>
+    <main class="container">
+        <img src="../static/uploads/{{user.photoName}}" alt="">
+        <div id="column1">
+            <!-- <form method="post" action="/uploadImage" enctype="multipart/form-data">
+            <input type="file" name="file" autocomplete="off" required style="display: block;border: none; text-align: center;" class="p-4">
+            <input type="submit" value="Submit">
+            </form> -->
+            <h3 class="p-t: 3px"> <span class="special-text">Name : {{user.name}} {{user.lastName}}</span></h3>
+            <h4 style="color:darkgrey">{{user.email}}</h4>
+            <!-- <a href="/edit/{{user.id}}">EDIT PROFILE</a> -->
+        </div>
+        <div>
+            {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p >{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+        </div>
+
+        <div id="column2" class="mt-5">
+            <h3>Future Events</h3>
+            <ul>
+                {% for event in allEvents %}
+                {% if event.id in userJoindEvents or user.id == event.creator_id %}
+                {% if event.date > today %}
+                <li>{{event.name}}</li>
+                {%endif%}
+                {%endif%}
+                {%endfor%}
+            </ul>
+        </div>
+        <div id="column2" class="mt-5">
+            <h3>Events History</h3>
+            <ul>
+                {% for event in allEvents %}
+                <!-- {{event.date}} == {{today}} -->
+                {% if event.id in userJoindEvents or user.id == event.creator_id %}
+                {% if event.date < today %} 
+                <li>{{event.name}}</li>
+                {%endif%}
+                {%endif%}
+                {%endfor%}
+            </ul>
+        </div>
+    </main>
+
+
+
+</body>
+
+</html>

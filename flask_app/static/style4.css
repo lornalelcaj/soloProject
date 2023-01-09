@@ -1,0 +1,129 @@
+
+       * {
+        border: none;
+        background: none;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        font: 1rem 'Nunito', sans-serif;
+    }
+
+    body {
+        overflow-x: hidden;
+        padding-bottom: 75px;
+        min-height: 100vh;
+        /* display: grid; */
+    }
+
+    nav {
+        text-align: right;
+        padding: 7.5px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+    }
+
+    h1 {
+        letter-spacing: 5px;
+        font-size: 4rem;
+        margin-bottom: 15px;
+    }
+
+    h3 {
+        font-size: inherit;
+        letter-spacing: 5px;
+        font-weight: 300;
+        margin: 40px 0px 25px 0px;
+    }
+
+    input {
+        border: none;
+        border-bottom: 2px solid lightgrey;
+        padding: 5px 5px 5px 12px;
+        flex: 1;
+        color: black;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    .dataTable * {
+        border-color: lightgrey;
+    }
+
+    a {
+        text-decoration: none;
+        color: darkgrey;
+        font-family: 'Poppins', sans-serif;
+        border: none;
+        display: inline-block;
+        transition: .3s;
+    }
+
+    .page-navigation-link {
+        padding: 5px;
+        margin: 10px 20px;
+        border: none;
+        position: relative;
+    }
+
+    .page-navigation-link::after {
+        content: "";
+        position: absolute;
+        background-color: turquoise;
+        height: 3px;
+        width: 0;
+        left: 0;
+        bottom: -2px;
+        transition: .3s;
+    }
+
+    .page-navigation-link:hover:after {
+        width: 100%;
+    }
+
+    a:hover {
+        color: turquoise;
+    }
+
+    tr:nth-child(1) th:first-child {
+        border-top-left-radius: 5px;
+    }
+
+    tr:nth-child(1) th:last-child {
+        border-top-right-radius: 5px;
+    }
+
+    tr:nth-last-child(1) td:first-child {
+        border-bottom-left-radius: 5px;
+    }
+
+    tr:nth-last-child(1) td:last-child {
+        border-bottom-right-radius: 5px;
+    }
+
+    .table {
+        width: auto;
+    }
+
+    .special-text {
+        color: turquoise;
+        text-shadow: 1px 1px 3px #e0e0e0;
+    }
+
+    .current-page {
+        color:turquoise;
+        font-family: 'Poppins', sans-serif;
+        padding: 5px;
+        margin: 10px 20px;
+    }

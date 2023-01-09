@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/7398/7398946.png" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../static/style2.css">
+
+
+</head>
+<body>
+
+    <h1>iSport</h1>
+    <h3>Free Pickup Game Finder and Organizer</h3>
+        {% with messages = get_flashed_messages(category_filter=["signUp"]) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-danger">{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+        <form action="/createUser" method="post">
+            <div class="input-container">
+                <i class="fa fa-user"></i>
+                <label for="name"></label>
+                <input type="text" name="name" placeholder="Enter the user name">
+            </div>
+            <div class="form-row">
+                {% with messages = get_flashed_messages(category_filter=["name"]) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-danger">{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div> 
+            <div class="input-container">
+                <i class="fa fa-user"></i>
+                <label for="lastName"></label>
+                <input  type="text" name="lastName" placeholder="Last Name">
+            </div> 
+            <div class="form-row">
+                {% with messages = get_flashed_messages(category_filter=["lastName"]) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-danger">{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="input-container">
+                <label for="email"></label>
+                <i class="fa fa-envelope"></i>
+                <input  type="email" name="email" placeholder="EMAIL">
+            </div>
+            <div class="form-row">
+                {% with messages = get_flashed_messages(category_filter=["emailSignUp"]) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-danger">{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="input-container">
+                <i class="fa fa-lock"></i>
+                <label for="password"></label>
+                <input  type="password" name="password" placeholder="Password">
+            </div> 
+            <div class="form-row">
+                {% with messages = get_flashed_messages(category_filter=["passwordRegister"]) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-danger">{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div  class="input-container">
+                <i class="fa fa-lock"></i>
+                <label for="confirmpassword"></label>
+                <input class="form-control mt-2 mb-2" type="password" name="confirmpassword" placeholder="Enter the password again">
+            </div> 
+            <div class="form-row">
+                {% with messages = get_flashed_messages(category_filter=["passwordConfirm"]) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-danger">{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="input-container">
+                <i class="fa fa-calendar"></i>
+                <label for="birthdate"></label>
+                <input  type="date" name="birthdate" placeholder="Birthdate">
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <span>Already have an account? <a href="/loginPage">Log In</a> </span>
+
+</body>
+</html>
